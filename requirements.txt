@@ -1,0 +1,39 @@
+attrs==23.2.0
+certifi==2024.2.2
+cffi==1.16.0
+charset-normalizer==3.3.2
+customtkinter==5.2.2
+darkdetect==0.8.0
+gomind_automation @ git+ssh://git@github.com/GrupoDomini/gomind_automation.git@28b9f0ce62312c602d5c883deb1d6346a5bbffe7
+gomind_excel @ git+ssh://git@github.com/GrupoDomini/gomind_excel.git@2964ce9c6ed02f6ed0618f3ac9b9aea309ced120
+gomind_web_browser @ git+ssh://git@github.com/GrupoDomini/gomind_web_browser.git@3372598292e073f844342eb59870ff49ef8b6717
+h11==0.14.0
+idna==3.6
+keyboard==0.13.5
+MouseInfo==0.1.3
+outcome==1.3.0.post0
+packaging==23.2
+pillow==10.2.0
+PyAutoGUI==0.9.54
+pycparser==2.21
+PyGetWindow==0.0.9
+PyMsgBox==1.0.9
+pynput==1.7.6
+pyperclip==1.8.2
+PyRect==0.2.0
+PyScreeze==0.1.30
+PySocks==1.7.1
+python-dotenv==1.0.1
+pytweening==1.2.0
+pywin32==306
+requests==2.31.0
+selenium==4.18.1
+six==1.16.0
+sniffio==1.3.1
+sortedcontainers==2.4.0
+trio==0.24.0
+trio-websocket==0.11.1
+typing_extensions==4.10.0
+urllib3==2.2.1
+webdriver-manager==4.0.1
+wsproto==1.2.0
