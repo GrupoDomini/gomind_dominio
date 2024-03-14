@@ -12,8 +12,8 @@ setup(
     packages=["gomind_dominio"],
     zip_safe=False,
     install_requires=[
-        "gomind_web_browser @ git+ssh://git@github.com/GrupoDomini/gomind_web_browser.git",
-        "gomind_excel @ git+ssh://git@github.com/GrupoDomini/gomind_excel.git",
-        "gomind_automation @ git+ssh://git@github.com/GrupoDomini/gomind_automation.git",
+        "gomind_web_browser @ git+https://github.com/GrupoDomini/gomind_web_browser.git",
+        "gomind_excel @ git+https://github.com/GrupoDomini/gomind_excel.git",
+        "gomind_automation @ git+https://github.com/GrupoDomini/gomind_automation.git",
     ],
 )
