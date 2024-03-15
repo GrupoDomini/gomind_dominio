@@ -295,8 +295,9 @@ def baixar_relatorio_como_pdf():
     py.press("tab", presses=2, interval=0.4)
     py.press("enter", interval=0.3)
     print("Baixou o relatorio como pdf")
-    if automation.esperar_imagem("acrobat_icon.png", segundos=10):
-        py.press("esc")
+    if automation.esperar_imagem('localiza_pdf.png', 60, 0.99):
+        automation.clicar_no_centro_da_tela() #--> Clica no centro da tela
+        py.hotkey('ctrl', 'q')
     sleep(3)
 
 
