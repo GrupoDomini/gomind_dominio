@@ -363,8 +363,8 @@ def apuracao_dominio(mes_ant, ano):
     sleep(0.5)
     py.press("esc", presses=3, interval=0.5)
 
-if not checar_dominio(5):
-    print("Erro ao abrir o dominio", "error")
-    raise Exception("Não conseguiu abrir o dominio")
-else:
-    print("Dominio foi aberto corretamente")
+    if not checar_dominio(5):
+        print("Erro ao abrir o dominio", "error")
+        raise Exception("Não conseguiu abrir o dominio")
+    else:
+        print("Dominio foi aberto corretamente")
