@@ -151,6 +151,7 @@ def escolher_modulo(coluna: int = 1, linha: int = 1) -> None:
         py.press("down", presses=linha - 1, interval=0.2)
     time.sleep(1)
     py.press("enter", interval=0.2)
+    py.hotkey("win", "d")
 
 
 def fechar_dominio_sistemas():
