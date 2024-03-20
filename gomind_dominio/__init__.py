@@ -331,6 +331,11 @@ def abrir_dominio(
     escolher_modulo(linha=modulo_linha, coluna=modulo_coluna)
     login(user_desktop, password_desktop)
 
+    if not checar_dominio(5):
+        print("Erro ao abrir o dominio", "error")
+        raise Exception("Não conseguiu abrir o dominio")
+    else:
+        print("Dominio foi aberto corretamente")
 
 def apuracao_dominio(mes_ant, ano):
     automation.clicar_na_imagem('apuracao_dominioweb.png',20, 0.5)
@@ -362,9 +367,3 @@ def apuracao_dominio(mes_ant, ano):
     py.press("n", presses=2)
     sleep(0.5)
     py.press("esc", presses=3, interval=0.5)
-
-    if not checar_dominio(5):
-        print("Erro ao abrir o dominio", "error")
-        raise Exception("Não conseguiu abrir o dominio")
-    else:
-        print("Dominio foi aberto corretamente")
