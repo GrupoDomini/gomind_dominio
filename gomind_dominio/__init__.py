@@ -7,6 +7,7 @@ import pyautogui as py
 import gomind_automation as automation
 from time import sleep
 from gomind_web_browser import WebBrowser
+import pyperclip
 
 
 class DominioWeb(WebBrowser):
@@ -150,6 +151,7 @@ def escolher_modulo(coluna: int = 1, linha: int = 1) -> None:
         py.press("down", presses=linha - 1, interval=0.2)
     time.sleep(1)
     py.press("enter", interval=0.2)
+    py.hotkey("win", "d")
 
 
 def fechar_dominio_sistemas():
@@ -329,8 +331,40 @@ def abrir_dominio(
     escolher_modulo(linha=modulo_linha, coluna=modulo_coluna)
     login(user_desktop, password_desktop)
 
-    if not checar_dominio(5):
-        print("Erro ao abrir o dominio", "error")
-        raise Exception("Não conseguiu abrir o dominio")
-    else:
-        print("Dominio foi aberto corretamente")
+
+def apuracao_dominio(mes_ant, ano):
+    automation.clicar_na_imagem('apuracao_dominioweb.png',20, 0.5)
+    automation.esperar_imagem('proce_apuracao_dominioweb.png', 5, 0.5)
+    py.hotkey("ctrl", "c")
+    data_obtida = pyperclip.paste()
+    sleep(1)
+    data_obtidaStr = str(data_obtida)
+
+    data_final = f"{mes_ant}/{ano}"
+
+    if data_obtidaStr != data_final:
+        py.write(f"{mes_ant}{ano}")  # define período inicial de apuração
+        sleep(2)
+        py.press("tab")
+        sleep(2)
+        py.write(f"{mes_ant}{ano}")  # define período final de apuração
+        automation.clicar_na_imagem("proce_apuracao_dominioweb.png", 60, 0.5)
+        sleep(2)
+
+    automation.esperar_imagem_sumir('processo_apuracao.png',180, 0.5)
+    if automation.esperar_imagem('aviso_apuracao.png', 5, 0.5):
+        py.press('esc', presses=3)
+        sleep(1)
+
+    while not automation.esperar_imagem("apuracao_selecao_periodo.png", 5, 0.5):
+        py.press("n", presses=2)
+        sleep(0.5)
+    py.press("n", presses=2)
+    sleep(0.5)
+    py.press("esc", presses=3, interval=0.5)
+
+if not checar_dominio(5):
+    print("Erro ao abrir o dominio", "error")
+    raise Exception("Não conseguiu abrir o dominio")
+else:
+    print("Dominio foi aberto corretamente")
