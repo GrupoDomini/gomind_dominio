@@ -177,7 +177,7 @@ def alterar_cliente_dominio(codigo_cliente: Union[str, int]) -> bool:
     # endregion
 
     # region =========== AGUARDAR BUTTON TROCAR CODIGO =======
-    automation.clicar_na_imagem("cod_troca_dominioweb.png", 15, clicks=2)
+    automation.clicar_na_imagem("cod_troca_dominioweb.png", 60, clicks=2)
     # endregion
 
     # region =========== TROCAR/ESCREVER CODIGO ===============
@@ -234,7 +234,7 @@ def baixar_relatorio_como_excel():
     sleep(10)  # Tempo para esperar o arquivo EXCEL baixar
 
 
-def baixar_relatorio_como_xlsx(caminho: str, letra_do_cliente: str):
+def baixar_relatorio_como_xlsx(caminho: str, letra_do_cliente: str, converter_xlsx: bool = False):
     """A partir de um xls ele transformara em xlsx no mesmo caminho, apagando o arquivo xls no final do processo"""
     print("Vai baixar o relatorio como excel")
     sleep(2)
@@ -254,6 +254,12 @@ def baixar_relatorio_como_xlsx(caminho: str, letra_do_cliente: str):
     py.press("enter")
     print("Baixou o relatorio como excel")
 
+    automation.esperar_imagem('icon_openofice.png', 140)
+    #clica no centro da tela
+    py.click(500, 500)
+    time.sleep(1)
+    py.hotkey('ctrl', 'q')
+
     tempo_inicial = time.time()
     while tempo_inicial - time.time() < 200:
         achou = automation.esperar_imagem("btn_salvar_como_excel.png")
@@ -271,9 +277,11 @@ def baixar_relatorio_como_xlsx(caminho: str, letra_do_cliente: str):
         caminho.replace("\\", "\\\\"),
     ).replace("\\\\", "\\")
 
-    caminho_xlsx = "{}.xlsx".format(caminho_cliente)
-    caminho_xls = "{}.xls".format(caminho_cliente)
-    converter_xls_para_xlsx(caminho_xls, caminho_xlsx, True)
+    caminho_xlsx = caminho_cliente
+    if converter_xlsx:
+        caminho_xlsx = "{}.xlsx".format(caminho_cliente)
+        caminho_xls = "{}.xls".format(caminho_cliente)
+        converter_xls_para_xlsx(caminho_xls, caminho_xlsx, True)
 
     while True:
         position = automation.esperar_imagem("btn_salvar_como_excel.png")
