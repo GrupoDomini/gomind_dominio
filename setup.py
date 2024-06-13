@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="gomind_dominio",
     python_requires=">=3.6",
-    version="0.2.1",
+    version="0.3.0",
     description="GoMind dominio service",
     url="https://github.com/GrupoDomini/gomind_dominio.git",
     author="JeffersonCarvalhoGM",
