@@ -345,6 +345,40 @@ def abrir_dominio(
     else:
         print("Dominio foi aberto corretamente")
 
+def apura_geraparcela_dominio(mes_ant, ano):
+    try:
+        width_screen, height_screen = py.size()
+        time.sleep(.5)
+        py.doubleClick(width_screen /2, height_screen /2)
+
+        automation.clicar_na_imagem('apuracao_dominioweb.png',20, 0.5)
+        if btn_processa_periodo := automation.esperar_imagem('proce_apuracao_dominioweb.png', 10, 0.5):
+            sleep(2)
+            py.write(f"{mes_ant}{ano}")  # define período inicial de apuração
+            sleep(.5)
+            py.press("tab")
+            sleep(.5)
+            py.write(f"{mes_ant}{ano}")  # define período final de apuração
+        
+            automation.clicar_na_imagem('proce_apuracao_dominioweb.png', 3, 0.5, clicks=2)
+
+        sleep(3)
+        automation.esperar_imagem_sumir('processo_apuracao.png',180, 0.5)
+        if automation.esperar_imagem('aviso_apuracao.png', 5, 0.5):
+            py.press('esc', presses=3)
+            sleep(1)
+            print("Erro na Apuração do Período para a empresa")
+        else:
+            print("Apuração do Período para a empresa realizado com sucesso")
+        
+        while not automation.esperar_imagem("apuracao_selecao_periodo.png", 5, 0.5):
+            py.press("n", presses=2)
+            sleep(0.5)
+        py.press(['n', 'esc'], presses= 5, interval= .3)
+        print("Encerrou janela Apuração do Período")
+    except:
+        print("Erro na Apuração do Período para a empresa")
+
 def apuracao_dominio(mes_ant, ano):
     automation.clicar_na_imagem('apuracao_dominioweb.png',20, 0.5)
     automation.esperar_imagem('proce_apuracao_dominioweb.png', 5, 0.5)
