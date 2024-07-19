@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name="gomind_dominio",
     python_requires=">=3.6",
-    version="0.2.1",
+    version="0.3.0",
     description="GoMind dominio service",
     url="https://github.com/GrupoDomini/gomind_dominio.git",
     author="JeffersonCarvalhoGM",
@@ -12,8 +12,8 @@ setup(
     packages=["gomind_dominio"],
     zip_safe=False,
     install_requires=[
-        "gomind_web_browser @ git+ssh://git@github.com/GrupoDomini/gomind_web_browser.git",
-        "gomind_excel @ git+ssh://git@github.com/GrupoDomini/gomind_excel.git",
-        "gomind_automation @ git+ssh://git@github.com/GrupoDomini/gomind_automation.git",
+        "gomind_web_browser @ git+https://github.com/GrupoDomini/gomind_web_browser.git",
+        "gomind_excel @ git+https://github.com/GrupoDomini/gomind_excel.git",
+        "gomind_automation @ git+https://github.com/GrupoDomini/gomind_automation.git",
     ],
 )

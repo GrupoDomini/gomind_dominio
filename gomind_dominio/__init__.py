@@ -8,6 +8,7 @@ import gomind_automation as automation
 from time import sleep
 from gomind_web_browser import WebBrowser
 import pyperclip
+import os
 
 
 class DominioWeb(WebBrowser):
@@ -156,10 +157,14 @@ def escolher_modulo(coluna: int = 1, linha: int = 1) -> None:
 
 def fechar_dominio_sistemas():
     """Fechar o aplicativo - Domínio Sistemas"""
-    forcar_escape()
-    py.hotkey("altleft", "f4")
-    sleep(2)
-    py.press("enter")
+    # Janela principal        
+    try:
+        os.system('TASKKILL /F /IM ' + 'AppController.exe')
+        os.system('TASKKILL /F /IM ' + 'gg-client.exe')
+        os.system('TASKKILL /F /IM ' + 'UpdateService.exe')
+        os.system('TASKKILL /F /IM ' + 'TRInternetMonitor.exe')
+    except:
+        pass
 
 
 def alterar_cliente_dominio(codigo_cliente: Union[str, int]) -> bool:
@@ -339,6 +344,11 @@ def abrir_dominio(
     escolher_modulo(linha=modulo_linha, coluna=modulo_coluna)
     login(user_desktop, password_desktop)
 
+    if not checar_dominio(5):
+        print("Erro ao abrir o dominio", "error")
+        raise Exception("Não conseguiu abrir o dominio")
+    else:
+        print("Dominio foi aberto corretamente")
 
 def apura_geraparcela_dominio(mes_ant, ano):
     try:
