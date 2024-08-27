@@ -323,6 +323,7 @@ def abrir_dominio(
     password_web: str,
     modulo_linha: int = 1,
     modulo_coluna=1,
+    tentativas: int = 3,
 ):
     dominio_web = DominioWeb()
 
@@ -335,7 +336,11 @@ def abrir_dominio(
         time.sleep(2)
         dominio_web.encerrar_navegador()
 
-    if not checar_dominioweb():  # Verifica se o Plugin DominioWeb foi aberto
+    if not checar_dominioweb(segundos=80):  # Verifica se o Plugin DominioWeb foi aberto
+        fechar_dominio_sistemas()
+        if tentativas > 0:
+            tentativas -= 1
+            abrir_dominio(user_desktop, password_desktop, user_web, password_web, modulo_linha, modulo_coluna, tentativas)
         raise Exception("Não conseguiu abrir o dominio")
 
     print(f"Escolhendo modulo LINHA={modulo_linha}, COLUNA={modulo_coluna}")
