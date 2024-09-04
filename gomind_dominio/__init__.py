@@ -81,7 +81,7 @@ def login(user: str, password: str):
     """Logon Módulo - Domínio Web"""
     print("[step] (login) Fazendo login no dominio desktop")
     print("Fazendo login no Dominio Web Plugin")
-    if not automation.esperar_imagem("user_dominiow.png", 30, 1):
+    if not automation.esperar_imagem("user_dominiow.png", 80, 1):
         print("Plugin do Domínio Web não disponível")
         raise Exception("Plugin do Domínio Web não disponível")
 
@@ -349,7 +349,7 @@ def abrir_dominio(
     escolher_modulo(linha=modulo_linha, coluna=modulo_coluna)
     login(user_desktop, password_desktop)
 
-    if not checar_dominio(5):
+    if not checar_dominio(10):
         print("Erro ao abrir o dominio", "error")
         raise Exception("Não conseguiu abrir o dominio")
     else:
