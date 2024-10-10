@@ -341,6 +341,7 @@ def abrir_dominio(
         if tentativas > 0:
             tentativas -= 1
             abrir_dominio(user_desktop, password_desktop, user_web, password_web, modulo_linha, modulo_coluna, tentativas)
+            return
         raise Exception("Não conseguiu abrir o dominio")
 
     print(f"Escolhendo modulo LINHA={modulo_linha}, COLUNA={modulo_coluna}")
@@ -354,6 +355,8 @@ def abrir_dominio(
         raise Exception("Não conseguiu abrir o dominio")
     else:
         print("Dominio foi aberto corretamente")
+
+    return 
 
 def apura_geraparcela_dominio(mes_ant, ano):
     try:
